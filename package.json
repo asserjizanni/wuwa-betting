@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "bot": "cd telegram-bot && node src/bot.js",
+    "bot:bg": "cd telegram-bot && bash run.sh bg"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
