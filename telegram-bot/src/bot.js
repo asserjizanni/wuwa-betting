@@ -338,7 +338,11 @@ async function processNotificationQueue() {
     });
 
     if (error) {
-      console.error('Queue poll error:', error.message);
+      if (typeof error.message === 'string' && (error.message.includes('<!DOCTYPE') || error.message.includes('520') || error.message.includes('not found') || error.message.includes('does not exist'))) {
+        console.warn('⚠️ [Queue Worker] Waiting for database tables: please run migration_v7_telegram_notification_system.sql in Supabase SQL Editor.');
+      } else {
+        console.error('Queue poll error:', error.message || error);
+      }
       return;
     }
 
