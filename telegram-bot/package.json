@@ -1,0 +1,19 @@
+{
+  "name": "wuwa-betting-telegram-bot",
+  "version": "1.0.0",
+  "description": "Official Telegram Notification Bot for WuWa Betting — Solaris World (Termux Ready)",
+  "main": "src/bot.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/bot.js",
+    "dev": "node --watch src/bot.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "dotenv": "^16.4.7",
+    "node-telegram-bot-api": "^0.66.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
