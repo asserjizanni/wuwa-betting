@@ -346,14 +346,16 @@ export function AdminCardDesigner() {
   const handleDeleteCard = async () => {
     if (!deleteConfirm || !admin?.id) return
     try {
-      const { error } = await supabase.from('cards').delete().eq('id', deleteConfirm.id)
-      if (error) {
-        if (error.code === '23503') {
-          throw new Error('لا يمكن حذف البطاقة لأن بعض اللاعبين يمتلكون نسخاً منها بالفعل. يمكنك إلغاء نشرها بدلاً من ذلك.')
-        }
-        throw error
+      const { data, error } = await supabase.rpc('admin_delete_card', {
+        p_admin_id: admin.id,
+        p_card_id: deleteConfirm.id,
+      })
+      if (error) throw error
+      if (!data?.success) {
+        throw new Error(data?.message || 'فشلت عملية الحذف')
       }
-      toast.success('تم حذف تعريف البطاقة')
+
+      toast.success('تم حذف تعريف البطاقة بنجاح')
       setDeleteConfirm(null)
       await loadAllData()
     } catch (err) {

@@ -245,6 +245,12 @@ export function GuildsPage() {
           color: newRoleColor,
           icon: newRoleIcon,
           permissions: newRolePerms,
+          can_invite: !!newRolePerms.invite_members,
+          can_accept_requests: !!newRolePerms.manage_applications,
+          can_post_announcements: !!newRolePerms.send_announcements,
+          can_manage_events: !!newRolePerms.organize_events,
+          can_manage_roles: false,
+          created_by: player?.id,
           display_order: customRoles.length + 1,
           is_active: true,
         }])
@@ -258,6 +264,22 @@ export function GuildsPage() {
       toast.error('فشل إنشاء الرتبة: ' + err.message)
     } finally {
       setSavingRole(false)
+    }
+  }
+
+  const handleDeleteCustomRole = async (roleId: string) => {
+    try {
+      const { error } = await supabase
+        .from('clan_custom_roles')
+        .delete()
+        .eq('id', roleId)
+
+      if (error) throw error
+      toast.success('تم حذف الرتبة المخصصة')
+      const myG = guilds.find(g => g.isJoined)
+      if (myG) loadClanDetails(myG.id)
+    } catch (err: any) {
+      toast.error('فشل حذف الرتبة: ' + err.message)
     }
   }
 
@@ -731,6 +753,16 @@ export function GuildsPage() {
                               <div className="text-[10px] text-slate-400">{r.description || 'رتبة كلان مخصصة'}</div>
                             </div>
                           </div>
+                          {(myBaseRole === 'leader' || myBaseRole === 'deputy_leader') && (
+                            <button
+                              type="button"
+                              onClick={() => handleDeleteCustomRole(r.id)}
+                              className="text-slate-500 hover:text-red-400 p-1.5 rounded-lg hover:bg-red-500/10 transition-colors"
+                              title="حذف الرتبة"
+                            >
+                              <Trash2 size={14} />
+                            </button>
+                          )}
                         </div>
                       ))}
                     </div>
