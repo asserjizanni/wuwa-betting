@@ -205,7 +205,9 @@ export function GuildsPage() {
         if (memberData) {
           myGuildId = memberData.guild_id
           const bRole = (memberData.base_role || memberData.role || 'member') as any
-          setMyBaseRole(bRole === 'leader' ? 'leader' : bRole === 'deputy_leader' ? 'deputy_leader' : 'member')
+          const isLeader = bRole === 'leader' || memberData.role === 'leader'
+          const isDeputy = bRole === 'deputy_leader' || bRole === 'officer' || memberData.role === 'officer'
+          setMyBaseRole(isLeader ? 'leader' : isDeputy ? 'deputy_leader' : 'member')
         }
       }
 
@@ -289,7 +291,11 @@ export function GuildsPage() {
             id: m.id,
             player_id: m.player_id,
             role: m.role || 'member',
-            base_role: m.base_role || (m.role === 'leader' ? 'leader' : 'member'),
+            base_role: (m.base_role === 'leader' || m.role === 'leader')
+              ? 'leader'
+              : (m.base_role === 'deputy_leader' || m.base_role === 'officer' || m.role === 'officer')
+              ? 'deputy_leader'
+              : 'member',
             custom_role_id: m.custom_role_id,
             joined_at: m.joined_at || m.created_at,
             player: {
@@ -511,9 +517,10 @@ export function GuildsPage() {
       return toast.error('القائد فقط يستطيع تعيين نواب القائد')
     }
     try {
+      const dbRole = newRole === 'deputy_leader' ? 'officer' : 'member'
       const { error } = await supabase
         .from('guild_members')
-        .update({ base_role: newRole, role: newRole })
+        .update({ base_role: newRole, role: dbRole })
         .eq('id', member.id)
 
       if (error) throw error

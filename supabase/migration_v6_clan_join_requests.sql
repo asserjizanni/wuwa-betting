@@ -34,3 +34,8 @@ CREATE POLICY "Clan managers can update requests" ON public.clan_join_requests F
 
 DROP POLICY IF EXISTS "Clan managers or players can delete requests" ON public.clan_join_requests;
 CREATE POLICY "Clan managers or players can delete requests" ON public.clan_join_requests FOR DELETE USING (true);
+
+-- 3. Update check constraint on guild_members.role if needed to support deputy_leader & officer
+ALTER TABLE public.guild_members DROP CONSTRAINT IF EXISTS guild_members_role_check;
+ALTER TABLE public.guild_members ADD CONSTRAINT guild_members_role_check CHECK (role IN ('leader', 'officer', 'deputy_leader', 'member'));
+
