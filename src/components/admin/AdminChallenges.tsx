@@ -200,7 +200,7 @@ export function AdminChallenges() {
                     </td>
                     <td>
                       <span className="font-bold text-amber-300 number-ltr text-sm">
-                        {c.stake.toLocaleString('ar-EG')} نقطة
+                        ${c.stake.toLocaleString('en-US')}
                       </span>
                     </td>
                     <td>{getStatusBadge(c.status)}</td>
@@ -268,10 +268,10 @@ export function AdminChallenges() {
             <div className="glass-card rounded-2xl p-4 border border-amber-500/30 bg-amber-500/5 text-center">
               <p className="text-xs text-slate-400 mb-1">إجمالي جائزة الفائز (ضعف الرهان)</p>
               <p className="text-2xl font-black text-amber-300 number-ltr">
-                {(resolveModal.stake * 2).toLocaleString('ar-EG')} نقطة
+                ${(resolveModal.stake * 2).toLocaleString('en-US')}
               </p>
               <p className="text-xs text-slate-500 mt-1">
-                رهان كل لاعب: {resolveModal.stake.toLocaleString('ar-EG')} نقطة
+                رهان كل لاعب: ${resolveModal.stake.toLocaleString('en-US')}
               </p>
             </div>
 
@@ -314,7 +314,7 @@ export function AdminChallenges() {
             {isResolving && (
               <div className="flex items-center justify-center gap-2 text-primary-400 text-xs">
                 <Loader2 size={16} className="animate-spin" />
-                <span>جارٍ تسجيل الفوز وتحويل النقاط...</span>
+                <span>جارٍ تسجيل الفوز وتحويل الأرباح ($)...</span>
               </div>
             )}
           </div>

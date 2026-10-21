@@ -36,6 +36,17 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+/* Number display utility: forces standard Western digits (0-9) and correct LTR display */
+.number-ltr {
+  direction: ltr !important;
+  display: inline-block;
+  unicode-bidi: isolate;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
 }
 
 /* Scrollbar styling */
@@ -441,10 +452,13 @@ body {
   border-radius: 10px 0 0 10px;
 }
 
-/* Number fonts should be LTR even in RTL */
+/* Number fonts should be LTR even in RTL and use Western digits (0-9) */
 .number-ltr {
   direction: ltr;
   display: inline-block;
+  font-variant-numeric: tabular-nums lining-nums;
+  -webkit-font-feature-settings: "lnum" 1, "tnum" 1;
+  font-feature-settings: "lnum" 1, "tnum" 1;
 }
 
 /* Tooltip */

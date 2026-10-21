@@ -139,7 +139,7 @@ export function BoxStorePage() {
 
     const totalCost = count > 1 ? (box.multi_price || box.price * count) : box.price
     if ((player.balance || 0) < totalCost) {
-      toast.error(`رصيدك لا يكفي! تحتاج ${totalCost} نقطة، رصيدك الحالي ${player.balance || 0}`)
+      toast.error(`رصيدك لا يكفي! تحتاج ${totalCost}$، رصيدك الحالي ${player.balance || 0}$`)
       return
     }
 
@@ -198,7 +198,7 @@ export function BoxStorePage() {
           افتح الصناديق واجمع أندر بطاقات الـ Resonators
         </h1>
         <p className="text-slate-400 text-xs sm:text-base max-w-2xl mx-auto px-2">
-          استثمر نقاطك في فتح الصناديق المتنوعة، كل سحبة تزيد من فرصة الحصول على بطاقات أسطورية وخرافية مع نظام الضمان الذكي (Pity System).
+          استثمر دولاراتك ($) في فتح الصناديق المتنوعة، كل سحبة تزيد من فرصة الحصول على بطاقات أسطورية وخرافية مع نظام الضمان الذكي (Pity System).
         </p>
 
         {/* User Balance Bar */}
@@ -206,8 +206,8 @@ export function BoxStorePage() {
           <div className="mt-4 sm:mt-6 inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-4 py-2 sm:px-6 sm:py-2.5 rounded-2xl glass-card border border-primary-500/30 shadow-lg text-xs sm:text-sm">
             <Coins className="text-amber-400" size={18} />
             <span className="text-slate-300">رصيدك المتاح:</span>
-            <span className="font-black text-base sm:text-lg text-amber-400 font-mono">
-              {Number(player.balance || 0).toLocaleString()} نقطة
+            <span className="font-black text-base sm:text-lg text-amber-400 font-mono number-ltr">
+              ${Number(player.balance || 0).toLocaleString('en-US')}
             </span>
             <Link to="/collection" className="mr-2 text-xs text-primary-400 hover:text-primary-300 font-bold flex items-center gap-1">
               عرض مجموعتي <ArrowRight size={13} />
@@ -307,8 +307,8 @@ export function BoxStorePage() {
                         <Package size={15} />
                         <span>سحبة 1x</span>
                       </div>
-                      <span className="bg-black/30 px-2 py-0.5 rounded-lg text-[11px] font-bold text-amber-300 font-mono">
-                        {box.price} نقطة
+                      <span className="bg-black/30 px-2 py-0.5 rounded-lg text-[11px] font-bold text-amber-300 font-mono number-ltr">
+                        ${box.price}
                       </span>
                     </button>
 
@@ -323,8 +323,8 @@ export function BoxStorePage() {
                         <Sparkles size={15} className="text-amber-300 animate-spin" />
                         <span>سحب {box.multi_count || 10}x</span>
                       </div>
-                      <span className="bg-black/30 px-2 py-0.5 rounded-lg text-[11px] font-bold text-amber-300 font-mono">
-                        {box.multi_price || box.price * 9} نقطة
+                      <span className="bg-black/30 px-2 py-0.5 rounded-lg text-[11px] font-bold text-amber-300 font-mono number-ltr">
+                        ${box.multi_price || box.price * 9}
                       </span>
                     </button>
                   </div>

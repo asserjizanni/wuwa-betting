@@ -113,3 +113,46 @@ export function playDuelVictoryFanfare() {
   } catch {}
 }
 
+export function playWheelTickSound(pitchMultiplier = 1) {
+  try {
+    const ctx = getAudioContext()
+    if (!ctx) return
+    const now = ctx.currentTime
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+    osc.type = 'triangle'
+    osc.frequency.setValueAtTime(600 * pitchMultiplier, now)
+    osc.frequency.exponentialRampToValueAtTime(150, now + 0.04)
+    gain.gain.setValueAtTime(0.08, now)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04)
+    osc.connect(gain)
+    gain.connect(ctx.destination)
+    osc.start(now)
+    osc.stop(now + 0.04)
+  } catch {}
+}
+
+export function playWheelWinFanfare(isLegendary = false) {
+  try {
+    const ctx = getAudioContext()
+    if (!ctx) return
+    const now = ctx.currentTime
+    const notes = isLegendary
+      ? [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98] // C5 to G6 fanfare
+      : [440.00, 554.37, 659.25, 880.00] // A major
+    notes.forEach((freq, idx) => {
+      const osc = ctx.createOscillator()
+      const gain = ctx.createGain()
+      osc.type = isLegendary ? 'triangle' : 'sine'
+      osc.frequency.setValueAtTime(freq, now + idx * 0.09)
+      gain.gain.setValueAtTime(0, now + idx * 0.09)
+      gain.gain.linearRampToValueAtTime(0.25, now + idx * 0.09 + 0.02)
+      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.09 + 0.7)
+      osc.connect(gain)
+      gain.connect(ctx.destination)
+      osc.start(now + idx * 0.09)
+      osc.stop(now + idx * 0.09 + 0.75)
+    })
+  } catch {}
+}
+

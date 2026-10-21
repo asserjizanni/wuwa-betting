@@ -840,7 +840,7 @@ export function CollectionPage() {
                   <div>
                     <span className="text-slate-500 block">تاريخ الحصول:</span>
                     <span className="font-bold text-slate-300">
-                      {new Date(inspectedCard.obtained_at).toLocaleDateString('ar-EG')}
+                      {new Date(inspectedCard.obtained_at).toLocaleDateString('ar-EG-u-nu-latn')}
                     </span>
                   </div>
                   <div>
@@ -898,7 +898,7 @@ export function CollectionPage() {
                         >
                           <div className="flex items-center justify-between">
                             <span className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
-                              <Coins size={14} /> حدد سعر البيع بالنقاط:
+                              <Coins size={14} /> حدد سعر البيع بالدولار ($):
                             </span>
                             <button
                               onClick={() => setSellModalOpen(false)}
@@ -914,13 +914,13 @@ export function CollectionPage() {
                                 key={p}
                                 type="button"
                                 onClick={() => setSellPrice(p)}
-                                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all number-ltr ${
                                   sellPrice === p
                                     ? 'bg-primary-500 text-white shadow'
                                     : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white'
                                 }`}
                               >
-                                {p}
+                                ${p}
                               </button>
                             ))}
                           </div>

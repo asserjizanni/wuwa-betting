@@ -103,10 +103,10 @@ export function LeaderboardPage() {
                     >
                       <span className={medals[visIdx] + ' ' + sizes[visIdx]}>{medals[visIdx]}</span>
                       <p className="font-bold text-white text-sm truncate max-w-full group-hover:text-amber-400 transition-colors">{p.username}</p>
-                      <p className={`text-xs font-bold ${
+                      <p className={`text-xs font-bold number-ltr ${
                         rank === 1 ? 'text-amber-400' : rank === 2 ? 'text-slate-300' : 'text-amber-600'
                       }`}>
-                        {p.balance.toLocaleString('ar-EG')}
+                        {p.balance < 0 ? '-' : ''}${Math.abs(p.balance).toLocaleString('en-US')}
                       </p>
                       <p className="text-xs text-slate-600">{p.win_rate}% نجاح</p>
                       <span className="text-[10px] text-amber-400/80 font-bold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 mt-1">
@@ -127,8 +127,8 @@ export function LeaderboardPage() {
                   <tr>
                     <th>المركز</th>
                     <th>اللاعب</th>
-                    <th>الرصيد</th>
-                    <th className="hidden sm:table-cell">إجمالي الأرباح</th>
+                    <th>الرصيد ($)</th>
+                    <th className="hidden sm:table-cell">إجمالي الأرباح ($)</th>
                     <th className="hidden md:table-cell">الرهانات</th>
                     <th className="hidden md:table-cell">الفوز/الخسارة</th>
                     <th>نسبة النجاح</th>
@@ -168,11 +168,11 @@ export function LeaderboardPage() {
                         </td>
                         <td>
                           <span className={`font-bold number-ltr ${p.balance < 0 ? 'text-red-400' : 'text-white'}`}>
-                            {p.balance.toLocaleString('ar-EG')}
+                            {p.balance < 0 ? '-' : ''}${Math.abs(p.balance).toLocaleString('en-US')}
                           </span>
                         </td>
                         <td className="hidden sm:table-cell">
-                          <span className="text-green-400 font-semibold number-ltr">+{p.total_winnings.toLocaleString('ar-EG')}</span>
+                          <span className="text-green-400 font-semibold number-ltr">+${p.total_winnings.toLocaleString('en-US')}</span>
                         </td>
                         <td className="hidden md:table-cell">
                           <span className="text-slate-400 number-ltr">{p.total_bets}</span>

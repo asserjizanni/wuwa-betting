@@ -628,7 +628,7 @@ export function AdminTelegram() {
                 )}
 
                 <div className="text-[10px] text-slate-400 text-left font-mono pt-1">
-                  {new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })} ✓✓
+                  {new Date().toLocaleTimeString('ar-EG-u-nu-latn', { hour: '2-digit', minute: '2-digit' })} ✓✓
                 </div>
               </div>
             </div>
@@ -899,7 +899,7 @@ export function AdminTelegram() {
                         {item.failure_count > 0 && (
                           <span>❌ فشل: <strong className="text-rose-400">{item.failure_count}</strong></span>
                         )}
-                        <span>🕒 {new Date(item.created_at).toLocaleString('ar-EG')}</span>
+                        <span>🕒 {new Date(item.created_at).toLocaleString('ar-EG-u-nu-latn')}</span>
                       </div>
 
                       {item.failure_count > 0 && (

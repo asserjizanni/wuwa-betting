@@ -428,7 +428,7 @@ export function AdminBosses() {
                     <div className="grid grid-cols-4 gap-1.5 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80 text-center text-xs">
                       <div>
                         <div className="text-slate-500 text-[10px]">HP</div>
-                        <div className="font-bold text-emerald-400">{(boss.hp || 10000).toLocaleString()}</div>
+                        <div className="font-bold text-emerald-400 font-mono number-ltr">{(boss.hp || 10000).toLocaleString('en-US')}</div>
                       </div>
                       <div>
                         <div className="text-slate-500 text-[10px]">ATK</div>
@@ -450,8 +450,8 @@ export function AdminBosses() {
                         <Trophy size={14} className="text-amber-400" />
                         مكافآت الفوز:
                       </span>
-                      <span className="font-mono font-bold text-white">
-                        +{boss.win_points} نقطة • <strong className="text-amber-400">{boss.reward_items?.length || 0}</strong> جوائز
+                      <span className="font-mono font-bold text-white number-ltr">
+                        +${boss.win_points} • <strong className="text-amber-400">{boss.reward_items?.length || 0}</strong> جوائز
                       </span>
                     </div>
                   </div>
@@ -720,7 +720,7 @@ export function AdminBosses() {
                         مكافآت الفوز (Victory Rewards)
                       </div>
                       <p className="text-xs text-slate-400">
-                        حدد البطاقات والألقاب والنقاط التي يربحها اللاعب عند هزيمة الزعيم مع قواعد ونسب سقوط مستقلة.
+                        حدد البطاقات والألقاب والجوائز ($) التي يربحها اللاعب عند هزيمة الزعيم مع قواعد ونسب سقوط مستقلة.
                       </p>
                     </div>
 
@@ -745,7 +745,7 @@ export function AdminBosses() {
                   {/* Points Fields */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-900/60 p-3.5 rounded-2xl border border-slate-800/80">
                     <div>
-                      <label className="block text-xs font-bold text-amber-300 mb-1">نقاط الفوز الأساسية (Win Points)</label>
+                      <label className="block text-xs font-bold text-amber-300 mb-1">دولارات الفوز الأساسية (Win Cash $)</label>
                       <input
                         type="number"
                         min="0"
@@ -755,7 +755,7 @@ export function AdminBosses() {
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-red-400 mb-1">نقاط أول قاتل بالسيرفر (First Blood Points)</label>
+                      <label className="block text-xs font-bold text-red-400 mb-1">دولارات أول قاتل بالسيرفر (First Blood $)</label>
                       <input
                         type="number"
                         min="0"

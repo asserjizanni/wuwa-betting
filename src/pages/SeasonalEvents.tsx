@@ -123,7 +123,7 @@ export function SeasonalEventsPage() {
                   <p className="text-sm text-slate-400 mb-3">{activeEvents[0].description}</p>
                   <div className="flex items-center gap-4 text-xs text-slate-400 mb-4 flex-wrap">
                     <span className="flex items-center gap-1"><Clock size={12} />{getDaysLeft(activeEvents[0].endDate)} يوم متبقٍ</span>
-                    <span className="flex items-center gap-1"><Users size={12} />{activeEvents[0].participants.toLocaleString("ar-EG")} مشارك</span>
+                    <span className="flex items-center gap-1"><Users size={12} />{activeEvents[0].participants.toLocaleString("en-US")} مشارك</span>
                     <span className="flex items-center gap-1"><Gift size={12} className="text-amber-400" />{activeEvents[0].reward}</span>
                   </div>
                   <button onClick={() => handleJoin(activeEvents[0].id)} disabled={joinedEvents.has(activeEvents[0].id)} className="btn-primary px-6 py-2.5 text-sm disabled:opacity-60 disabled:cursor-not-allowed">
@@ -187,8 +187,8 @@ export function SeasonalEventsPage() {
                 {/* Participants */}
                 {event.isActive && (
                   <div className="flex items-center justify-between text-xs text-slate-400">
-                    <span className="flex items-center gap-1"><Users size={11} />{event.participants.toLocaleString("ar-EG")} مشارك</span>
-                    <span>{new Date(event.startDate).toLocaleDateString("ar-EG")} - {new Date(event.endDate).toLocaleDateString("ar-EG")}</span>
+                    <span className="flex items-center gap-1"><Users size={11} />{event.participants.toLocaleString("en-US")} مشارك</span>
+                    <span>{new Date(event.startDate).toLocaleDateString("ar-EG-u-nu-latn")} - {new Date(event.endDate).toLocaleDateString("ar-EG-u-nu-latn")}</span>
                   </div>
                 )}
 

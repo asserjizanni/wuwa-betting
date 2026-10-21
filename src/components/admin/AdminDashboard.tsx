@@ -178,12 +178,12 @@ export function AdminDashboard() {
         className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4"
       >
         {[
-          { title: 'إجمالي اللاعبين', value: stats.totalPlayers.toLocaleString('ar-EG'), icon: <Users size={24} />, color: 'blue' as const },
-          { title: 'إجمالي الإيفنتات', value: stats.totalEvents.toLocaleString('ar-EG'), icon: <Swords size={24} />, color: 'purple' as const },
-          { title: 'إيفنتات مفتوحة', value: stats.openEvents.toLocaleString('ar-EG'), icon: <Zap size={24} />, color: 'green' as const },
-          { title: 'إيفنتات مكتملة', value: stats.completedEvents.toLocaleString('ar-EG'), icon: <Trophy size={24} />, color: 'gold' as const },
-          { title: 'إجمالي الرهانات', value: stats.totalBets.toLocaleString('ar-EG'), icon: <Activity size={24} />, color: 'red' as const },
-          { title: 'إجمالي النقاط المراهن بها', value: stats.totalBetsValue.toLocaleString('ar-EG'), icon: <TrendingUp size={24} />, color: 'blue' as const },
+          { title: 'إجمالي اللاعبين', value: stats.totalPlayers.toLocaleString('en-US'), icon: <Users size={24} />, color: 'blue' as const },
+          { title: 'إجمالي الإيفنتات', value: stats.totalEvents.toLocaleString('en-US'), icon: <Swords size={24} />, color: 'purple' as const },
+          { title: 'إيفنتات مفتوحة', value: stats.openEvents.toLocaleString('en-US'), icon: <Zap size={24} />, color: 'green' as const },
+          { title: 'إيفنتات مكتملة', value: stats.completedEvents.toLocaleString('en-US'), icon: <Trophy size={24} />, color: 'gold' as const },
+          { title: 'إجمالي الرهانات', value: stats.totalBets.toLocaleString('en-US'), icon: <Activity size={24} />, color: 'red' as const },
+          { title: 'إجمالي المبالغ المراهن بها ($)', value: `$${stats.totalBetsValue.toLocaleString('en-US')}`, icon: <TrendingUp size={24} />, color: 'blue' as const },
         ].map((s, i) => (
           <motion.div
             key={i}
@@ -215,7 +215,7 @@ export function AdminDashboard() {
                     <span className="text-white font-medium">{(bet.player as any)?.username}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-slate-300 number-ltr">{bet.stake.toLocaleString('ar-EG')} نقطة</span>
+                    <span className="text-slate-300 number-ltr">${bet.stake.toLocaleString('en-US')}</span>
                     <span className={`badge ${getBetStatusClass(bet.status)}`}>
                       {getBetStatusLabel(bet.status)}
                     </span>
@@ -273,7 +273,7 @@ export function AdminDashboard() {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className={`number-ltr ${p.balance < 0 ? 'text-red-400' : 'text-slate-300'}`}>
-                      {p.balance.toLocaleString('ar-EG')} نقطة
+                      {p.balance < 0 ? '-' : ''}${Math.abs(p.balance).toLocaleString('en-US')}
                     </span>
                   </div>
                 </div>

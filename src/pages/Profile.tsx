@@ -24,9 +24,9 @@ const ACHIEVEMENTS = [
   { id: "first_win",    icon: "🏆",  title: "أول انتصار",       desc: "افوز برهانك الأول",       req: (p: any) => p.winning_bets >= 1 },
   { id: "five_wins",    icon: "⭐",  title: "سلسلة الانتصارات", desc: "افوز بـ 5 رهانات",       req: (p: any) => p.winning_bets >= 5 },
   { id: "twenty_wins",  icon: "💎",  title: "بطل الساحة",       desc: "افوز بـ 20 رهان",        req: (p: any) => p.winning_bets >= 20 },
-  { id: "balance_1k",   icon: "💰",  title: "ألف نقطة",         desc: "اجمع 1000 نقطة",         req: (p: any) => p.balance >= 1000 },
-  { id: "balance_5k",   icon: "💎",  title: "خمسة آلاف",        desc: "اجمع 5000 نقطة",         req: (p: any) => p.balance >= 5000 },
-  { id: "balance_10k",  icon: "👑",  title: "سيد الثروة",       desc: "اجمع 10000 نقطة",        req: (p: any) => p.balance >= 10000 },
+  { id: "balance_1k",   icon: "💰",  title: "ألف دولار",         desc: "اجمع 1000$",             req: (p: any) => p.balance >= 1000 },
+  { id: "balance_5k",   icon: "💎",  title: "خمسة آلاف دولار",    desc: "اجمع 5000$",             req: (p: any) => p.balance >= 5000 },
+  { id: "balance_10k",  icon: "👑",  title: "سيد الثروة",       desc: "اجمع 10000$",            req: (p: any) => p.balance >= 10000 },
   { id: "win_rate_60",  icon: "🎖️", title: "دقيق التوقعات",    desc: "حقق نسبة فوز 60%+",      req: (p: any) => p.total_bets >= 5 && (p.winning_bets / p.total_bets) >= 0.6 },
   { id: "win_rate_80",  icon: "🌟",  title: "عبقري التوقعات",   desc: "حقق نسبة فوز 80%+",      req: (p: any) => p.total_bets >= 10 && (p.winning_bets / p.total_bets) >= 0.8 },
 ]
@@ -603,9 +603,9 @@ export function ProfilePage() {
 
               {/* Wallet / Action Badge */}
               <div className="mt-4 flex items-center justify-center sm:justify-start gap-3 flex-wrap">
-                <div className="px-4 py-1.5 rounded-2xl text-base font-black text-primary-300 bg-primary-500/10 border border-primary-500/30 flex items-center gap-1.5">
+                <div className="px-4 py-1.5 rounded-2xl text-base font-black text-primary-300 bg-primary-500/10 border border-primary-500/30 flex items-center gap-1.5 number-ltr">
                   <Zap size={16} className="text-primary-400" />
-                  <AnimatedNumber value={displayUser.balance || 0} suffix=" نقطة" />
+                  <AnimatedNumber value={displayUser.balance || 0} prefix="$" />
                 </div>
 
                 {!isOwnProfile && (
@@ -676,11 +676,11 @@ export function ProfilePage() {
           <div className="flex items-center gap-2 flex-wrap">
             {/* Total Power / Stats chips */}
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950/80 border border-slate-800 text-xs font-bold text-slate-300">
-              <span className="text-red-400" title="إجمالي الهجوم">⚔️ {totalDeckAtk.toLocaleString('ar-EG')}</span>
+              <span className="text-red-400 number-ltr" title="إجمالي الهجوم">⚔️ {totalDeckAtk.toLocaleString('en-US')}</span>
               <span className="text-slate-600">|</span>
-              <span className="text-blue-400" title="إجمالي الدفاع">🛡️ {totalDeckDef.toLocaleString('ar-EG')}</span>
+              <span className="text-blue-400 number-ltr" title="إجمالي الدفاع">🛡️ {totalDeckDef.toLocaleString('en-US')}</span>
               <span className="text-slate-600">|</span>
-              <span className="text-green-400" title="إجمالي نقاط الصحة">❤️ {totalDeckHp.toLocaleString('ar-EG')}</span>
+              <span className="text-green-400 number-ltr" title="إجمالي نقاط الصحة">❤️ {totalDeckHp.toLocaleString('en-US')}</span>
             </div>
 
             {isOwnProfile && (
@@ -856,7 +856,7 @@ export function ProfilePage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="glass-card rounded-2xl p-5 border border-slate-800">
                 <div className="flex items-center gap-2 mb-2"><TrendingUp size={18} className="text-green-400" /><span className="text-sm font-bold text-white">إجمالي الأرباح</span></div>
-                <p className="text-2xl font-black text-green-400"><AnimatedNumber value={displayUser.total_winnings} suffix=" نقطة" /></p>
+                <p className="text-2xl font-black text-green-400 number-ltr"><AnimatedNumber value={displayUser.total_winnings} prefix="$" /></p>
               </div>
               <div className="glass-card rounded-2xl p-5 border border-slate-800">
                 <div className="flex items-center gap-2 mb-2"><Calendar size={18} className="text-primary-400" /><span className="text-sm font-bold text-white">تاريخ الانضمام</span></div>

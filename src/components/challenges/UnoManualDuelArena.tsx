@@ -516,7 +516,7 @@ export function UnoManualDuelArena({
                   </span>
                 </div>
                 <p className="text-[11px] text-slate-400">
-                  الجائزة الإجمالية: <span className="text-amber-400 font-bold">{stake * 2} نقطة</span>
+                  الجائزة الإجمالية: <span className="text-amber-400 font-bold">${stake * 2}</span>
                 </p>
               </div>
             </div>
@@ -839,7 +839,7 @@ export function UnoManualDuelArena({
                     <Trophy size={48} className="mx-auto" />
                     <h2 className="text-2xl font-black uppercase tracking-wider">VICTORY! 🏆</h2>
                     <p className="text-sm font-bold">
-                      حسمت المعركة بفوز البطل <span className="underline">{duelWinner}</span> وحصل على الجائزة الإجمالية {stake * 2} نقطة!
+                      حسمت المعركة بفوز البطل <span className="underline">{duelWinner}</span> وحصل على الجائزة الإجمالية ${stake * 2}!
                     </p>
                     {duelWinReason && (
                       <div className="px-3 py-1 rounded-full bg-black/20 text-black text-xs font-black">
@@ -847,7 +847,7 @@ export function UnoManualDuelArena({
                       </div>
                     )}
                     <button onClick={onClose} className="w-full py-3 rounded-xl bg-black text-amber-300 font-black text-sm hover:bg-slate-900 transition-all">
-                      استلام النقاط والعودة
+                      استلام الأرباح ($) والعودة
                     </button>
                   </motion.div>
                 </div>

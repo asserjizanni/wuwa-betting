@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Trophy, Home, Calendar, LogOut, Menu, X, 
   User, Swords, ChevronDown, Wallet, Package, Sparkles, 
-  ShoppingBag, Gift, Users, Bell, Zap, Skull, Layers
+  ShoppingBag, Gift, Users, Bell, Zap, Skull, Layers, RotateCw
 } from 'lucide-react'
 import { useAuth } from '../../hooks/useAuth'
 import { useUIStore } from '../../store'
@@ -13,6 +13,7 @@ import { AnimatedNumber } from './UI'
 
 const navLinks = [
   { to: '/', label: 'الرئيسية', icon: Home },
+  { to: '/lucky-wheel', label: 'عجلة الحظ', icon: RotateCw },
   { to: '/bosses', label: 'الزعماء', icon: Skull },
   { to: '/events', label: 'الإيفنتات', icon: Swords },
   { to: '/boxes', label: 'متجر الصناديق', icon: Package },
@@ -28,10 +29,10 @@ const navLinks = [
 // Bottom navigation items for mobile screens
 const mobileBottomLinks = [
   { to: '/', label: 'الرئيسية', icon: Home },
+  { to: '/lucky-wheel', label: 'العجلة', icon: RotateCw },
   { to: '/events', label: 'الإيفنتات', icon: Swords },
   { to: '/boxes', label: 'الصناديق', icon: Package },
   { to: '/collection', label: 'مجموعتي', icon: Sparkles },
-  { to: '/challenges', label: 'التحديات', icon: Zap },
   { to: '/guilds', label: 'الكلانات', icon: Users },
 ]
 
@@ -118,7 +119,7 @@ export function Navbar() {
                   >
                     <Wallet size={13} className="text-primary-400" />
                     <span className="text-primary-300 number-ltr">
-                      <AnimatedNumber value={player.balance || 0} suffix=" نقطة" />
+                      <AnimatedNumber value={player.balance || 0} prefix="$" />
                     </span>
                   </div>
 

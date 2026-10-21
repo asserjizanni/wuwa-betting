@@ -89,13 +89,13 @@ export function HomePage() {
                 <div className="glass-card rounded-2xl p-4 text-center">
                   <p className="text-xs text-slate-400 mb-1">رصيدك الحالي</p>
                   <p className={`text-xl font-black ${player.balance < 0 ? 'text-red-400' : 'text-white'}`}>
-                    <AnimatedNumber value={player.balance} suffix=" نقطة" />
+                    <AnimatedNumber value={player.balance} prefix="$" />
                   </p>
                 </div>
                 <div className="glass-card rounded-2xl p-4 text-center">
                   <p className="text-xs text-slate-400 mb-1">إجمالي الأرباح</p>
                   <p className="text-xl font-black text-green-400">
-                    <AnimatedNumber value={player.total_winnings} suffix=" نقطة" />
+                    <AnimatedNumber value={player.total_winnings} prefix="$" />
                   </p>
                 </div>
                 <div className="glass-card rounded-2xl p-4 text-center">
@@ -126,8 +126,8 @@ export function HomePage() {
               </h1>
               
               <p className="text-lg text-slate-400 max-w-xl mx-auto">
-                راهن على شخصياتك المفضلة، واكسب نقاطاً، وتصدّر لوحة المتصدرين!
-                يحصل كل لاعب جديد على <span className="text-amber-400 font-bold">500 نقطة</span> مجاناً.
+                راهن على شخصياتك المفضلة، واكسب دولارات ($)، وتصدّر لوحة المتصدرين!
+                يحصل كل لاعب جديد على <span className="text-amber-400 font-bold">$500</span> مجاناً.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -269,7 +269,7 @@ export function HomePage() {
                   <div className="text-3xl mb-2">{['🥇', '🥈', '🥉'][idx]}</div>
                   <p className="font-bold text-white">{p.username}</p>
                   <p className="text-sm text-primary-400 font-bold mt-1">
-                    {p.balance.toLocaleString('ar-EG')} نقطة
+                    {p.balance < 0 ? '-' : ''}${Math.abs(p.balance).toLocaleString('en-US')}
                   </p>
                   <p className="text-xs text-slate-500 mt-1">
                     {p.winning_bets} فوز من {p.total_bets}

@@ -233,7 +233,7 @@ export function ClanWarsArena({
       }
       if (raw.status === 'completed') {
         playDuelVictoryFanfare()
-        pushTicker('🏆', `انتهت حرب الكلانات! جائزة ${raw.total_prize} نقطة للكلان الفائز`, 'text-yellow-300')
+        pushTicker('🏆', `انتهت حرب الكلانات! جائزة ${raw.total_prize}$ للكلان الفائز`, 'text-yellow-300')
       }
       return updated
     })
@@ -308,7 +308,7 @@ export function ClanWarsArena({
       if (!data?.success) throw new Error(data?.message || 'فشل إشعال حرب الكلان')
       toast.success(`اشتعلت حرب الكلانات بمود ${selectedMode}! ⚔️`)
       await loadMyBattle()
-      pushTicker('🔥', `أشعلت حرباً جديدة بمود ${selectedMode} برهان ${stakePerPlayer} نقطة/مقاتل`, 'text-red-400')
+      pushTicker('🔥', `أشعلت حرباً جديدة بمود ${selectedMode} برهان ${stakePerPlayer}$/مقاتل`, 'text-red-400')
     } catch (err: any) {
       toast.error(err?.message || 'فشل بدء حرب الكلانات')
     } finally {
@@ -470,10 +470,10 @@ export function ClanWarsArena({
                           </select>
                         </div>
                         <div>
-                          <label className="text-xs text-slate-400 block mb-1.5">الرهان / مقاتل (نقطة):</label>
+                          <label className="text-xs text-slate-400 block mb-1.5">الرهان / مقاتل ($):</label>
                           <select value={stakePerPlayer} onChange={e => setStakePerPlayer(Number(e.target.value))}
                             className="select-field text-xs py-2.5 px-3 w-full font-mono font-bold">
-                            {[50, 100, 250, 500, 1000].map(v => <option key={v} value={v}>{v} نقطة</option>)}
+                            {[50, 100, 250, 500, 1000].map(v => <option key={v} value={v}>${v}</option>)}
                           </select>
                         </div>
                       </div>
@@ -690,7 +690,7 @@ function BattleArena({ battle, isMyBattle, resolvingRound, onFightRound, myClanI
           <h3 className="text-xl font-black uppercase tracking-wider">انتهت حرب الكلانات!</h3>
           <p className="text-sm font-bold">
             {battle.clan_a_score > battle.clan_b_score ? battle.clan_a_name : battle.clan_b_name} يفوز!
-            <br />الجائزة: {battle.total_prize} نقطة للكلان الفائز 🏆
+            <br />الجائزة: ${battle.total_prize} للكلان الفائز 🏆
           </p>
         </motion.div>
       )}

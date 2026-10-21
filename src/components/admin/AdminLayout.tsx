@@ -5,7 +5,7 @@ import {
   LayoutDashboard, Swords, Users, ImageIcon,
   LogOut, Menu, X, ExternalLink, BarChart2,
   Lock, Loader2, AlertCircle, Sparkles, Sliders,
-  Bell, Trophy, Flame, Box, Skull, Key, Check, Send
+  Bell, Trophy, Flame, Box, Skull, Key, Check, Send, RotateCw
 } from 'lucide-react'
 import { useAuthStore } from '../../store'
 import { supabase, SUPABASE_URL, SUPABASE_ANON_KEY } from '../../lib/supabase'
@@ -14,6 +14,7 @@ import toast from 'react-hot-toast'
 
 const adminNav = [
   { to: '/admin', label: 'لوحة التحكم', icon: LayoutDashboard, end: true },
+  { to: '/admin/lucky-wheel', label: '🎡 عجلة الحظ (Lucky Wheel)', icon: RotateCw },
   { to: '/admin/bosses', label: 'الزعماء الأسطوريون', icon: Skull },
   { to: '/admin/titles', label: 'الألقاب والمقتنيات', icon: Trophy },
   { to: '/admin/boxes', label: 'صناديق السحب (Gacha)', icon: Box },

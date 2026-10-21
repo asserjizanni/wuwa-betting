@@ -592,7 +592,7 @@ export function CardFusionWorkbench({ onFusionComplete, initialCardId }: CardFus
                           </span>
                         </div>
                         <span className="text-[10px] text-slate-500 block mt-1">
-                          {new Date(log.created_at).toLocaleString('ar-EG')}
+                          {new Date(log.created_at).toLocaleString('ar-EG-u-nu-latn')}
                         </span>
                       </div>
                     </div>

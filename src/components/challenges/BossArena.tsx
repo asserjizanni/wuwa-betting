@@ -560,7 +560,7 @@ export function BossArena({
                 </span>
               </div>
               <p className="text-[11px] text-slate-400">
-                مواجهة تعتمد على كروت اليد ضد <strong className="text-white">{boss.name_ar || boss.name}</strong> • المكافأة: <span className="text-amber-400 font-bold">{boss.rewards?.points || boss.win_points || 500} نقطة</span>
+                مواجهة تعتمد على كروت اليد ضد <strong className="text-white">{boss.name_ar || boss.name}</strong> • المكافأة: <span className="text-amber-400 font-bold">${boss.rewards?.points || boss.win_points || 500}</span>
               </p>
             </div>
           </div>
@@ -1191,8 +1191,8 @@ export function BossArena({
                         </p>
 
                         {grantedRewards?.points > 0 && (
-                          <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono font-black text-base flex items-center justify-center gap-2">
-                            <span>+{grantedRewards.points} نقطة مكافأة الفوز 💰</span>
+                          <div className="p-3 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono font-black text-base flex items-center justify-center gap-2 number-ltr">
+                            <span>+${grantedRewards.points} مكافأة الفوز 💰</span>
                           </div>
                         )}
 

@@ -22,6 +22,7 @@ import { CardFusionPage } from './pages/CardFusion'
 import { NotificationsPage } from './pages/Notifications'
 import { SeasonalEventsPage } from './pages/SeasonalEvents'
 import { BossesPage } from './pages/Bosses'
+import { LuckyWheelPage } from './pages/LuckyWheel'
 
 // Admin
 import { AdminLayout } from './components/admin/AdminLayout'
@@ -40,6 +41,7 @@ import { AdminBoxes } from './components/admin/AdminBoxes'
 import { AdminBosses } from './components/admin/AdminBosses'
 import { AdminTitles } from './components/admin/AdminTitles'
 import { AdminTelegram } from './components/admin/AdminTelegram'
+import { AdminLuckyWheel } from './components/admin/AdminLuckyWheel'
 
 // Error boundary to catch any client-side exception and prevent black screens
 interface ErrorBoundaryProps {
@@ -238,11 +240,17 @@ function AppContent() {
             <BossesPage />
           </PublicLayout>
         } />
+        <Route path="/lucky-wheel" element={
+          <PublicLayout>
+            <LuckyWheelPage />
+          </PublicLayout>
+        } />
 
         {/* Admin routes - protected */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="settings" element={<AdminSettings />} />
+          <Route path="lucky-wheel" element={<AdminLuckyWheel />} />
           <Route path="players" element={<AdminPlayers />} />
           <Route path="boxes" element={<AdminBoxes />} />
           <Route path="cards" element={<AdminCardDesigner />} />

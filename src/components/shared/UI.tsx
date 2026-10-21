@@ -243,7 +243,7 @@ export function AnimatedNumber({ value, prefix = '', suffix = '' }: {
       transition={{ duration: 0.3 }}
       className="number-ltr"
     >
-      {prefix}{safeValue.toLocaleString('ar-EG')}{suffix}
+      {prefix}{safeValue.toLocaleString('en-US')}{suffix}
     </motion.span>
   )
 }

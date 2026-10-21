@@ -172,7 +172,7 @@ export function AdminEvents() {
       if (error) throw error
       if (!data?.success) throw new Error(data?.message || 'فشلت التسوية')
 
-      toast.success(`تمت التسوية! الفائزون: ${data.winners} | الخاسرون: ${data.losers} | المنح: ${data.total_paid?.toLocaleString('ar-EG')} نقطة`)
+      toast.success(`تمت التسوية! الفائزون: ${data.winners} | الخاسرون: ${data.losers} | المنح: $${data.total_paid?.toLocaleString('en-US')}`)
       setSettleCelebration(true)
       setTimeout(() => setSettleCelebration(false), 3000)
       setSettleModal(null)
@@ -198,7 +198,7 @@ export function AdminEvents() {
       if (error) throw error
       if (!data?.success) throw new Error(data?.message || 'فشل الإلغاء')
 
-      toast.success(`تم الإلغاء. استرداد ${data.refunded_bets} رهان (${data.total_refunded?.toLocaleString('ar-EG')} نقطة)`)
+      toast.success(`تم الإلغاء. استرداد ${data.refunded_bets} رهان ($${data.total_refunded?.toLocaleString('en-US')})`)
       setCancelModal(null)
       setCancelReason('')
       await loadData()
@@ -458,7 +458,7 @@ export function AdminEvents() {
       </Modal>
 
       {/* Settle Modal */}
-      <Modal isOpen={!!settleModal} onClose={() => !isSettling && setSettleModal(null)} title="إعلان النتيجة وتوزيع النقاط" size="sm">
+      <Modal isOpen={!!settleModal} onClose={() => !isSettling && setSettleModal(null)} title="إعلان النتيجة وتوزيع الأرباح ($)" size="sm">
         <div className="p-6 space-y-4">
           {settleModal && (
             <>
@@ -483,13 +483,13 @@ export function AdminEvents() {
               </div>
 
               <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-400">
-                ⚠️ تنبيه: هذه العملية لا يمكن التراجع عنها. سيتم توزيع النقاط على الفائزين تلقائياً.
+                ⚠️ تنبيه: هذه العملية لا يمكن التراجع عنها. سيتم توزيع الأرباح ($) على الفائزين تلقائياً.
               </div>
 
               <div className="flex gap-3">
                 <button onClick={handleSettle} disabled={isSettling || !selectedWinner} className="btn-success flex-1">
                   {isSettling ? <Loader2 size={16} className="animate-spin" /> : <CheckCircle size={16} />}
-                  {isSettling ? 'جارٍ التسوية...' : 'إعلان النتيجة وتوزيع النقاط'}
+                  {isSettling ? 'جارٍ التسوية...' : 'إعلان النتيجة وتوزيع الأرباح ($)'}
                 </button>
                 <button onClick={() => setSettleModal(null)} disabled={isSettling} className="btn-secondary">
                   <X size={16} />

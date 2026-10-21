@@ -174,7 +174,7 @@ export function CardEvolutionPage() {
       return
     }
     if (player.balance < upgradeCost) {
-      toast.error(`رصيدك غير كافٍ! تحتاج ${upgradeCost} نقطة ورصيدك الحالي ${player.balance} نقطة`)
+      toast.error(`رصيدك غير كافٍ! تحتاج ${upgradeCost}$ ورصيدك الحالي ${player.balance}$`)
       return
     }
 
@@ -231,7 +231,7 @@ export function CardEvolutionPage() {
             <div className="px-4 py-2 rounded-2xl bg-slate-900 border border-slate-700/80 flex items-center gap-2">
               <Coins size={16} className="text-amber-400" />
               <span className="text-xs text-slate-400">رصيدك المتاح:</span>
-              <span className="font-mono font-black text-amber-300 text-sm">{player.balance} نقطة</span>
+              <span className="font-mono font-black text-amber-300 text-sm number-ltr">${player.balance}</span>
             </div>
           </div>
         </motion.div>
@@ -455,8 +455,8 @@ export function CardEvolutionPage() {
                       {isMaxLevel ? (
                         <span className="text-emerald-400 text-sm font-black">أقصى ترقية مكتملة ✨</span>
                       ) : (
-                        <span className="text-amber-400 text-base font-black font-mono">
-                          {upgradeCost} نقطة
+                        <span className="text-amber-400 text-base font-black font-mono number-ltr">
+                          ${upgradeCost}
                         </span>
                       )}
                     </div>

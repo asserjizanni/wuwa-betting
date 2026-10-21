@@ -275,7 +275,7 @@ export function BossesPage() {
                   <div className="grid grid-cols-4 gap-2 bg-slate-950/60 p-3 rounded-2xl border border-slate-800/80 text-center text-xs">
                     <div>
                       <div className="text-slate-500 text-[10px]">الصحة</div>
-                      <div className="font-bold text-emerald-400 mt-0.5">{(boss.hp || 10000).toLocaleString()}</div>
+                      <div className="font-bold text-emerald-400 mt-0.5 font-mono number-ltr">{(boss.hp || 10000).toLocaleString('en-US')}</div>
                     </div>
                     <div>
                       <div className="text-slate-500 text-[10px]">الهجوم</div>
@@ -303,14 +303,14 @@ export function BossesPage() {
                       </span>
                     </div>
 
-                    {/* Points Badges */}
+                    {/* Rewards Badges */}
                     <div className="flex flex-wrap items-center gap-1.5 text-xs">
-                      <span className="px-2 py-0.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-[11px]">
-                        +{boss.win_points} نقطة فوز
+                      <span className="px-2 py-0.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 font-bold text-[11px] number-ltr">
+                        +${boss.win_points} فوز
                       </span>
                       {boss.first_blood_points > 0 && (
-                        <span className="px-2 py-0.5 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-[11px]">
-                          +{boss.first_blood_points} First Blood
+                        <span className="px-2 py-0.5 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 font-bold text-[11px] number-ltr">
+                          +${boss.first_blood_points} First Blood
                         </span>
                       )}
                     </div>

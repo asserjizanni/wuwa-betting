@@ -7,23 +7,23 @@ export function cn(...classes: (string | boolean | undefined | null)[]): string 
 export function formatNumber(num: number | string | undefined | null): string {
   const n = typeof num === 'number' ? num : Number(num) || 0
   if (Math.abs(n) >= 1000000) {
-    return (n / 1000000).toFixed(1) + 'م'
+    return (n / 1000000).toFixed(1) + 'M'
   }
   if (Math.abs(n) >= 1000) {
-    return (n / 1000).toFixed(1) + 'ك'
+    return (n / 1000).toFixed(1) + 'K'
   }
-  return n.toLocaleString('ar-EG')
+  return n.toLocaleString('en-US')
 }
 
 export function formatBalance(balance: number | string | undefined | null): string {
   const b = typeof balance === 'number' ? balance : Number(balance) || 0
   const sign = b < 0 ? '-' : ''
-  return sign + Math.abs(b).toLocaleString('ar-EG') + ' نقطة'
+  return `${sign}$${Math.abs(b).toLocaleString('en-US')}`
 }
 
 export function formatDate(dateString: string): string {
   const date = new Date(dateString)
-  return date.toLocaleDateString('ar-EG', {
+  return date.toLocaleDateString('ar-EG-u-nu-latn', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -61,7 +61,7 @@ export function getEventStatusLabel(status: EventStatus): string {
     open: 'مفتوح للرهان',
     closed: 'مغلق',
     pending_result: 'بانتظار النتيجة',
-    settling: 'جارٍ توزيع النقاط',
+    settling: 'جارٍ توزيع الأرباح ($)',
     completed: 'مكتمل',
     cancelled: 'ملغى',
   }

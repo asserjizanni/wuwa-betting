@@ -94,7 +94,7 @@ export function MarketplacePage() {
     if (!selectedListing || !player?.id) return
 
     if (player.balance < selectedListing.price) {
-      toast.error(`رصيدك لا يكفي! تحتاج ${selectedListing.price} نقطة، ورصيدك الحالي ${player.balance}`)
+      toast.error(`رصيدك لا يكفي! تحتاج ${selectedListing.price}$، ورصيدك الحالي ${player.balance}$`)
       return
     }
 
@@ -164,7 +164,7 @@ export function MarketplacePage() {
           </div>
           <h1 className="text-3xl md:text-4xl font-black text-white">سوق اللاعبين المباشر</h1>
           <p className="text-slate-400 text-sm mt-1">
-            اشترِ بطاقات نادرة من لاعبين آخرين أو اعرض بطاقاتك الفائضة للبيع واربح النقاط.
+            اشترِ بطاقات نادرة من لاعبين آخرين أو اعرض بطاقاتك الفائضة للبيع واربح الدولارات ($).
           </p>
         </div>
 
@@ -174,7 +174,7 @@ export function MarketplacePage() {
             <div className="glass-card px-4 py-2 rounded-2xl border border-primary-500/30 flex items-center gap-2 text-sm">
               <Coins className="text-amber-400" size={16} />
               <span className="text-slate-400 text-xs">رصيدك:</span>
-              <span className="font-bold text-amber-400">{player.balance.toLocaleString('ar-EG')}</span>
+              <span className="font-bold text-amber-400 number-ltr">{player.balance < 0 ? '-' : ''}${Math.abs(player.balance).toLocaleString('en-US')}</span>
             </div>
           )}
 
@@ -247,8 +247,8 @@ export function MarketplacePage() {
             className="w-full md:w-auto bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-slate-300 focus:outline-none focus:border-primary-500"
           >
             <option value="newest">الأحدث طرحاً</option>
-            <option value="price_asc">الأقل سعراً (نقاط)</option>
-            <option value="price_desc">الأعلى سعراً (نقاط)</option>
+            <option value="price_asc">الأقل سعراً ($)</option>
+            <option value="price_desc">الأعلى سعراً ($)</option>
           </select>
         </div>
       </div>
@@ -316,10 +316,9 @@ export function MarketplacePage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-[11px] text-slate-400">السعر المطلوب:</p>
-                      <p className="font-black text-xl text-amber-400 flex items-center gap-1">
+                      <p className="font-black text-xl text-amber-400 flex items-center gap-1 number-ltr">
                         <Coins size={16} />
-                        {item.price.toLocaleString('ar-EG')}
-                        <span className="text-xs font-normal text-slate-400">نقطة</span>
+                        ${item.price.toLocaleString('en-US')}
                       </p>
                     </div>
 
@@ -377,16 +376,16 @@ export function MarketplacePage() {
               <div className="bg-slate-900/80 p-4 rounded-2xl border border-slate-800 space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span className="text-slate-400">سعر البطاقة:</span>
-                  <span className="font-bold text-amber-400">{selectedListing.price} نقطة</span>
+                  <span className="font-bold text-amber-400 number-ltr">${selectedListing.price.toLocaleString('en-US')}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-400">رصيدك الحالي:</span>
-                  <span className="font-bold text-white">{player?.balance || 0} نقطة</span>
+                  <span className="font-bold text-white number-ltr">${(player?.balance || 0).toLocaleString('en-US')}</span>
                 </div>
                 <div className="flex justify-between border-t border-slate-800 pt-2">
                   <span className="text-slate-400">الرصيد بعد الشراء:</span>
-                  <span className={`font-bold ${(player?.balance || 0) - selectedListing.price < 0 ? 'text-red-400' : 'text-emerald-400'}`}>
-                    {((player?.balance || 0) - selectedListing.price).toLocaleString('ar-EG')} نقطة
+                  <span className={`font-bold number-ltr ${(player?.balance || 0) - selectedListing.price < 0 ? 'text-red-400' : 'text-emerald-400'}`}>
+                    ${((player?.balance || 0) - selectedListing.price).toLocaleString('en-US')}
                   </span>
                 </div>
               </div>

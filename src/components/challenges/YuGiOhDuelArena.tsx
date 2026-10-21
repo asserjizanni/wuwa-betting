@@ -293,7 +293,7 @@ export function YuGiOhDuelArena({
                   </span>
                 </div>
                 <p className="text-[10px] text-slate-400">
-                  الجائزة: <span className="text-amber-400 font-bold">{stake * 2} نقطة</span>
+                  الجائزة: <span className="text-amber-400 font-bold">${stake * 2}</span>
                 </p>
               </div>
             </div>
@@ -517,7 +517,7 @@ export function YuGiOhDuelArena({
                   DUEL VICTORY — انتصار ساحق!
                 </div>
                 <p className="text-xs sm:text-sm font-black text-slate-950">
-                  توج البطل <span className="underline">{finalWinner}</span> فائزاً بالمواجهة وحصل على الجائزة {stake * 2} نقطة!
+                  توج البطل <span className="underline">{finalWinner}</span> فائزاً بالمواجهة وحصل على الجائزة ${stake * 2}!
                 </p>
               </motion.div>
             )}

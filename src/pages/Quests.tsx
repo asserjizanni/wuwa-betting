@@ -122,7 +122,7 @@ export function QuestsPage() {
       if (error) throw new Error(error.message)
       if (!result?.success) throw new Error(result?.message || 'فشل استلام المكافأة')
 
-      toast.success(`مبارك! حصلت على ${result.reward} نقطة! 🎁 (الستريك الحالي: ${result.current_streak} أيام)`)
+      toast.success(`مبارك! حصلت على ${result.reward}$! 🎁 (الستريك الحالي: ${result.current_streak} أيام)`)
       playOpeningChime('epic')
       refreshPlayer()
       loadData()
@@ -149,7 +149,7 @@ export function QuestsPage() {
       if (error) throw new Error(error.message)
       if (!result?.success) throw new Error(result?.message || 'فشل استلام مكافأة المهمة')
 
-      toast.success(`مبارك! استلمت ${result.reward_points} نقطة إضافية! 🌟`)
+      toast.success(`مبارك! استلمت ${result.reward_points}$ إضافية! 🌟`)
       playOpeningChime('legendary')
       refreshPlayer()
       loadData()
@@ -189,7 +189,7 @@ export function QuestsPage() {
         </div>
         <h1 className="text-3xl md:text-5xl font-black text-white">المهام وتسجيل الدخول</h1>
         <p className="text-slate-400 text-sm">
-          سجل دخولك يومياً لترقية ستريك المكافآت، وأكمل المهام لتحصل على آلاف النقاط المجانية لفتح الصناديق!
+          سجل دخولك يومياً لترقية ستريك المكافآت، وأكمل المهام لتحصل على آلاف الدولارات ($) المجانية لفتح الصناديق!
         </p>
       </div>
 
@@ -266,8 +266,7 @@ export function QuestsPage() {
                   {isCompleted ? <Check size={20} /> : isGrand ? <Trophy size={22} /> : <Coins size={20} />}
                 </div>
 
-                <span className="text-sm font-black text-amber-400">+{item.reward}</span>
-                <span className="text-[10px] text-slate-500">نقطة</span>
+                <span className="text-sm font-black text-amber-400 number-ltr">+${item.reward}</span>
               </motion.div>
             )
           })}
@@ -346,8 +345,8 @@ export function QuestsPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-black flex-shrink-0">
-                    <Coins size={14} /> +{quest.reward_points}
+                  <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-black flex-shrink-0 number-ltr">
+                    <Coins size={14} /> +${quest.reward_points}
                   </div>
                 </div>
 

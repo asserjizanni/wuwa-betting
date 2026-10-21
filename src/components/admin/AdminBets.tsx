@@ -109,9 +109,9 @@ export function AdminBets() {
                     </td>
                     <td className="text-slate-400 max-w-32 truncate">{(bet.event as any)?.title}</td>
                     <td className="hidden md:table-cell text-slate-300">{(bet.selected_character as any)?.name}</td>
-                    <td className="font-bold text-white number-ltr">{bet.stake.toLocaleString('ar-EG')}</td>
+                    <td className="font-bold text-white number-ltr">${bet.stake.toLocaleString('en-US')}</td>
                     <td className="hidden sm:table-cell text-orange-400">×{bet.multiplier_snapshot}</td>
-                    <td className="hidden lg:table-cell text-green-400 number-ltr">{bet.potential_payout.toLocaleString('ar-EG')}</td>
+                    <td className="hidden lg:table-cell text-green-400 number-ltr">${bet.potential_payout.toLocaleString('en-US')}</td>
                     <td>
                       <span className={`badge ${getBetStatusClass(bet.status)}`}>
                         {getBetStatusLabel(bet.status)}

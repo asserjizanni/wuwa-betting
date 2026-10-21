@@ -670,7 +670,7 @@ export function AdminTitles() {
                             )}
                           </div>
                           <span className="text-[10px] text-slate-500 block mt-0.5">
-                            تاريخ الحصول: {new Date(holder.unlocked_at).toLocaleDateString('ar-EG')}
+                            تاريخ الحصول: {new Date(holder.unlocked_at).toLocaleDateString('ar-EG-u-nu-latn')}
                           </span>
                         </div>
 

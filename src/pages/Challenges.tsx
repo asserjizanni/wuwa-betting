@@ -424,7 +424,7 @@ export function ChallengesPage() {
     if (trimmedOpponent === player.username.toLowerCase()) {
       toast.error("لا يمكنك تحدي نفسك!"); return
     }
-    if (stakeAmount < 50) { toast.error("الحد الأدنى للرهان 50 نقطة"); return }
+    if (stakeAmount < 50) { toast.error("الحد الأدنى للرهان 50$"); return }
     if (stakeAmount > player.balance) { toast.error("رصيدك غير كافٍ"); return }
 
     setCreating(true)
@@ -457,7 +457,7 @@ export function ChallengesPage() {
         player_id: opponentData.id,
         type: 'challenge',
         title: 'تحدي جديد وارد! ⚔️',
-        message: `أرسل لك اللاعب ${player.username} تحدياً برهان ${stakeAmount} نقطة!`,
+        message: `أرسل لك اللاعب ${player.username} تحدياً برهان ${stakeAmount}$!`,
         icon: '⚔️'
       }])
 
@@ -739,12 +739,12 @@ export function ChallengesPage() {
           {[
             { label: "مواجهات جارية", value: activeDuels.length, icon: Swords, color: "text-blue-400" },
             { label: "تحديات بانتظاري", value: incoming.length, icon: Clock, color: "text-amber-400" },
-            { label: "رصيدي المتاح", value: player.balance, icon: Zap, color: "text-primary-400", suffix: " نقطة" },
+            { label: "رصيدي المتاح", value: player.balance, icon: Zap, color: "text-primary-400", prefix: "$" },
             { label: "تحديات مكتملة", value: history.length, icon: Trophy, color: "text-green-400" },
-          ].map(({ label, value, icon: Icon, color, suffix }) => (
+          ].map(({ label, value, icon: Icon, color, prefix }) => (
             <div key={label} className="glass-card rounded-2xl p-4 text-center border border-slate-700/60">
               <Icon size={18} className={`${color} mx-auto mb-1`} />
-              <p className={`text-xl font-black ${color}`}><AnimatedNumber value={value} suffix={suffix || ""} /></p>
+              <p className={`text-xl font-black ${color}`}><AnimatedNumber value={value} prefix={prefix || ""} /></p>
               <p className="text-xs text-slate-500 mt-0.5">{label}</p>
             </div>
           ))}
@@ -835,8 +835,8 @@ export function ChallengesPage() {
                         )}
                       </div>
                       <p className="text-xs text-slate-400">
-                        الرهان: <span className="text-amber-400 font-bold">{challenge.stake.toLocaleString("ar-EG")} نقطة</span>
-                        <span className="text-slate-500 mr-2">• الجائزة الإجمالية: {challenge.stake * 2} نقطة</span>
+                        الرهان: <span className="text-amber-400 font-bold number-ltr">${challenge.stake.toLocaleString("en-US")}</span>
+                        <span className="text-slate-500 mr-2">• الجائزة الإجمالية: ${challenge.stake * 2}</span>
                       </p>
                     </div>
                   </div>
@@ -958,7 +958,7 @@ export function ChallengesPage() {
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-300 mb-1.5 block">مبلغ الرهان (نقاط)</label>
+                <label className="text-xs font-bold text-slate-300 mb-1.5 block">مبلغ الرهان ($)</label>
                 <input
                   type="number"
                   value={stakeAmount}
@@ -970,7 +970,7 @@ export function ChallengesPage() {
                 <div className="flex gap-2 mt-2">
                   {[100, 250, 500, 1000].map(v => (
                     <button key={v} onClick={() => setStakeAmount(Math.min(v, player.balance))} className={`flex-1 text-xs py-1 rounded-lg border transition-all ${stakeAmount === v ? "bg-primary-500/20 border-primary-500/50 text-primary-400" : "border-slate-700 text-slate-400 hover:border-slate-600"}`}>
-                      {v}
+                      ${v}
                     </button>
                   ))}
                 </div>
@@ -978,7 +978,7 @@ export function ChallengesPage() {
 
               <div className="glass-card rounded-xl p-3 border border-amber-500/20">
                 <p className="text-xs text-amber-400 flex items-center gap-1.5">
-                  <Shield size={12} />رصيدك الحالي: <span className="font-bold">{player.balance.toLocaleString("ar-EG")} نقطة</span>
+                  <Shield size={12} />رصيدك الحالي: <span className="font-bold number-ltr">${player.balance.toLocaleString("en-US")}</span>
                 </p>
               </div>
 

@@ -141,7 +141,7 @@ export function AdminPlayers() {
       if (error) throw error
       if (!data?.success) throw new Error('فشل التعديل')
 
-      toast.success(`تم تعديل الرصيد. الرصيد الجديد: ${data.new_balance?.toLocaleString('ar-EG')} نقطة`)
+      toast.success(`تم تعديل الرصيد. الرصيد الجديد: ${data.new_balance < 0 ? '-' : ''}$${Math.abs(data.new_balance || 0).toLocaleString('en-US')}`)
       setAdjustModal(false)
       setAdjustAmount('')
       setAdjustReason('')
@@ -354,7 +354,7 @@ export function AdminPlayers() {
                       </td>
                       <td>
                         <span className={`font-bold number-ltr ${player.balance < 0 ? 'text-red-400' : 'text-white'}`}>
-                          {player.balance.toLocaleString('ar-EG')}
+                          {player.balance.toLocaleString('en-US')}
                         </span>
                       </td>
                       <td>
@@ -537,8 +537,8 @@ export function AdminPlayers() {
             {/* Stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
-                { label: 'الرصيد الحالي', value: `${selectedPlayer.balance.toLocaleString('ar-EG')} نقطة`, color: selectedPlayer.balance < 0 ? 'text-red-400' : 'text-white' },
-                { label: 'إجمالي الأرباح', value: `+${selectedPlayer.total_winnings.toLocaleString('ar-EG')}`, color: 'text-green-400' },
+                { label: 'الرصيد الحالي', value: `${selectedPlayer.balance < 0 ? '-' : ''}$${Math.abs(selectedPlayer.balance).toLocaleString('en-US')}`, color: selectedPlayer.balance < 0 ? 'text-red-400' : 'text-white' },
+                { label: 'إجمالي الأرباح', value: `+$${selectedPlayer.total_winnings.toLocaleString('en-US')}`, color: 'text-green-400' },
                 { label: 'رهانات فائزة', value: String(selectedPlayer.winning_bets), color: 'text-green-400' },
                 { label: 'رهانات خاسرة', value: String(selectedPlayer.losing_bets), color: 'text-red-400' },
               ].map(s => (
@@ -619,7 +619,7 @@ export function AdminPlayers() {
                     <div key={bet.id} className="flex items-center justify-between p-2.5 rounded-lg bg-slate-800/50 text-xs">
                       <div>
                         <span className="text-slate-400">الرهان: </span>
-                        <span className="text-white font-semibold number-ltr">{bet.stake.toLocaleString('ar-EG')}</span>
+                        <span className="text-white font-semibold number-ltr">{bet.stake.toLocaleString('en-US')}</span>
                         <span className="text-slate-500 mr-2">×{bet.multiplier_snapshot}</span>
                       </div>
                       <span className={`badge ${getBetStatusClass(bet.status)}`}>
@@ -646,7 +646,7 @@ export function AdminPlayers() {
                       </div>
                       <div className="text-left">
                         <p className={`font-bold number-ltr ${tx.amount > 0 ? 'text-green-400' : 'text-red-400'}`}>
-                          {tx.amount > 0 ? '+' : ''}{tx.amount.toLocaleString('ar-EG')}
+                          {tx.amount > 0 ? '+' : ''}{tx.amount.toLocaleString('en-US')}
                         </p>
                         <p className="text-slate-500 text-[10px]">{formatDate(tx.created_at)}</p>
                       </div>
@@ -767,7 +767,7 @@ export function AdminPlayers() {
               </div>
               <div className="text-left">
                 <span className="text-xs text-slate-400 block">الرصيد:</span>
-                <span className="text-xs font-mono font-bold text-amber-400">{targetPlayerForCard.balance.toLocaleString()} نقطة</span>
+                <span className="text-xs font-mono font-bold text-amber-400 number-ltr">${targetPlayerForCard.balance.toLocaleString('en-US')}</span>
               </div>
             </div>
           ) : (
@@ -780,7 +780,7 @@ export function AdminPlayers() {
               >
                 {players.map(p => (
                   <option key={p.id} value={p.id}>
-                    {p.username} ({p.balance.toLocaleString()} نقطة)
+                    {p.username} (${p.balance.toLocaleString('en-US')})
                   </option>
                 ))}
               </select>

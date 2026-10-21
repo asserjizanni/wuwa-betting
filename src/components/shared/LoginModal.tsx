@@ -112,7 +112,7 @@ export function LoginModal() {
       setAdmin(null)
 
       setGeneratedCode(playerData.recovery_code || '')
-      toast.success(`أهلاً بك يا ${playerData.username}! تم منحك 500 نقطة هدية 🎁`)
+      toast.success(`أهلاً بك يا ${playerData.username}! تم منحك 500$ هدية 🎁`)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'تعذر إنشاء الحساب')
     } finally {
@@ -446,7 +446,7 @@ export function LoginModal() {
 
                     <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs flex items-center gap-2">
                       <Sparkles size={16} className="flex-shrink-0" />
-                      <span>ستحصل على <strong>500 نقطة ترحيبية</strong> مجاناً فور التسجيل!</span>
+                      <span>ستحصل على <strong>500$ ترحيبية</strong> مجاناً فور التسجيل!</span>
                     </div>
 
                     {error && (

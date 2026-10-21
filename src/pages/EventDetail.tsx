@@ -138,7 +138,7 @@ export function EventDetailPage() {
       return
     }
     if (event.max_bet_amount && stake > event.max_bet_amount) {
-      setBetError(`الحد الأقصى للرهان هو ${event.max_bet_amount} نقطة`)
+      setBetError(`الحد الأقصى للرهان هو ${event.max_bet_amount}$`)
       return
     }
 
@@ -156,7 +156,7 @@ export function EventDetailPage() {
       if (error) throw new Error(error.message)
       if (!data?.success) throw new Error(data?.message || 'فشل تسجيل الرهان')
 
-      toast.success(`تم تسجيل رهانك بنجاح! رصيدك الجديد: ${data.new_balance?.toLocaleString('ar-EG')} نقطة`)
+      toast.success(`تم تسجيل رهانك بنجاح! رصيدك الجديد: ${data.new_balance < 0 ? '-' : ''}$${Math.abs(data.new_balance || 0).toLocaleString('en-US')}`)
       setBetModal(false)
       await Promise.all([loadMyBet(), refreshPlayer(), loadStats()])
     } catch (err) {
@@ -267,7 +267,7 @@ export function EventDetailPage() {
             {myBet && (
               <div className="mt-3">
                 {myBet.status === 'won' ? (
-                  <p className="text-green-400 font-semibold">🎉 لقد فزت بـ {myBet.potential_payout.toLocaleString('ar-EG')} نقطة!</p>
+                  <p className="text-green-400 font-semibold">🎉 لقد فزت بـ ${myBet.potential_payout.toLocaleString('en-US')}!</p>
                 ) : myBet.status === 'lost' ? (
                   <p className="text-red-400">خسرت هذا الرهان</p>
                 ) : null}
@@ -287,13 +287,13 @@ export function EventDetailPage() {
             <Check size={18} className="text-primary-400 flex-shrink-0" />
             <div>
               <p className="text-sm font-semibold text-white">
-                راهنت بـ <span className="text-primary-400">{myBet.stake.toLocaleString('ar-EG')} نقطة</span> على{' '}
+                راهنت بـ <span className="text-primary-400 number-ltr">${myBet.stake.toLocaleString('en-US')}</span> على{' '}
                 <span className="text-primary-300">
                   {myCharIsFavorite === 'a' ? event.character_a.name : event.character_b.name}
                 </span>
               </p>
               <p className="text-xs text-slate-500">
-                مكافأة محتملة: {myBet.potential_payout.toLocaleString('ar-EG')} نقطة (×{myBet.multiplier_snapshot})
+                مكافأة محتملة: ${myBet.potential_payout.toLocaleString('en-US')} (×{myBet.multiplier_snapshot})
               </p>
             </div>
           </motion.div>
@@ -321,7 +321,7 @@ export function EventDetailPage() {
             <div className="w-full glass-card rounded-2xl p-4 space-y-2 text-center">
               <div>
                 <p className="text-xs text-slate-500">إجمالي الرهانات</p>
-                <p className="text-xl font-bold text-white number-ltr">{totalStake.toLocaleString('ar-EG')}</p>
+                <p className="text-xl font-bold text-white number-ltr">${totalStake.toLocaleString('en-US')}</p>
               </div>
               <div>
                 <p className="text-xs text-slate-500">عدد المشاركين</p>
@@ -400,14 +400,14 @@ export function EventDetailPage() {
               {/* Player balance */}
               <div className="flex items-center justify-between p-3 rounded-xl bg-slate-800/50">
                 <span className="text-sm text-slate-400 flex items-center gap-1"><Wallet size={14} /> رصيدك الحالي</span>
-                <span className={`font-bold ${(player?.balance ?? 0) < 0 ? 'text-red-400' : 'text-white'}`}>
-                  {(player?.balance ?? 0).toLocaleString('ar-EG')} نقطة
+                <span className={`font-bold number-ltr ${(player?.balance ?? 0) < 0 ? 'text-red-400' : 'text-white'}`}>
+                  {(player?.balance ?? 0) < 0 ? '-' : ''}${Math.abs(player?.balance ?? 0).toLocaleString('en-US')}
                 </span>
               </div>
 
               {/* Stake input */}
               <div>
-                <label className="field-label">مبلغ الرهان (نقاط)</label>
+                <label className="field-label">مبلغ الرهان ($)</label>
                 <input
                   type="number"
                   value={stakeInput}
@@ -420,7 +420,7 @@ export function EventDetailPage() {
                   autoFocus
                 />
                 {event.max_bet_amount && (
-                  <p className="text-xs text-slate-600 mt-1">الحد الأقصى: {event.max_bet_amount.toLocaleString('ar-EG')} نقطة</p>
+                  <p className="text-xs text-slate-600 mt-1">الحد الأقصى: ${event.max_bet_amount.toLocaleString('en-US')}</p>
                 )}
               </div>
 
@@ -431,11 +431,11 @@ export function EventDetailPage() {
                 >
                   <div className="flex justify-between text-sm">
                     <span className="text-slate-400">المكافأة الإجمالية (×{event.multiplier})</span>
-                    <span className="text-green-400 font-bold">{potentialPayout.toLocaleString('ar-EG')} نقطة</span>
+                    <span className="text-green-400 font-bold number-ltr">${potentialPayout.toLocaleString('en-US')}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-slate-400">صافي الربح</span>
-                    <span className="text-green-400 font-bold">+{potentialProfit.toLocaleString('ar-EG')} نقطة</span>
+                    <span className="text-green-400 font-bold number-ltr">+${potentialProfit.toLocaleString('en-US')}</span>
                   </div>
                 </div>
               )}
@@ -446,7 +446,7 @@ export function EventDetailPage() {
                   ⚠️ أنت على وشك المراهنة على <strong>{selectedCharObj.name}</strong>. لا يمكنك تغيير اختيارك بعد تأكيد الرهان.
                   {(player?.balance ?? 0) < stakeNum && stakeNum > 0 && (
                     <span className="block mt-1 text-slate-400">
-                      ملاحظة: رصيدك سيصبح سالباً ({((player?.balance ?? 0) - stakeNum).toLocaleString('ar-EG')} نقطة). 
+                      ملاحظة: رصيدك سيصبح سالباً (${((player?.balance ?? 0) - stakeNum).toLocaleString('en-US')}). 
                       يمكنك المواصلة واستعادة الرصيد بالفوز في الإيفنتات.
                     </span>
                   )}
@@ -536,7 +536,7 @@ function CharacterBetCard({
         <div className="space-y-2 text-center text-sm">
           <div>
             <p className="text-slate-500 text-xs">إجمالي الرهانات</p>
-            <p className="font-bold text-white number-ltr">{totalStake.toLocaleString('ar-EG')}</p>
+            <p className="font-bold text-white number-ltr">${totalStake.toLocaleString('en-US')}</p>
           </div>
           <div>
             <p className="text-slate-500 text-xs">المشاركون</p>

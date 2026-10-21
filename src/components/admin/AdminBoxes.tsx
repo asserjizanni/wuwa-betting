@@ -473,7 +473,7 @@ export function AdminBoxes() {
                     {box.description_ar || 'صندوق سحب بطاقات مميزة'}
                   </p>
                   <span className="text-[11px] text-amber-400 font-mono font-bold block mt-1">
-                    سحبة: {box.price} نقطة | 10 سحبات: {box.multi_price || box.price * 9} نقطة
+                    سحبة: ${box.price} | 10 سحبات: ${box.multi_price || box.price * 9}
                   </span>
                 </div>
               </div>
@@ -700,7 +700,7 @@ export function AdminBoxes() {
             >
               <option value="keep_copies">الاحتفاظ بنسخ متعددة في محفظة اللاعب (أرقام تسلسلية مختلفة)</option>
               <option value="convert_shards">تحويل النسخ المكررة إلى شظايا تطوير (Shards)</option>
-              <option value="duplicate_bonus">منح نقاط إضافية مع الاحتفاظ بالنسخة</option>
+              <option value="duplicate_bonus">منح دولارات إضافية ($) مع الاحتفاظ بالنسخة</option>
             </select>
           </div>
 

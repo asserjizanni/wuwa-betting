@@ -208,7 +208,7 @@ export function AdminGuilds() {
                     </td>
                     <td>
                       <span className="text-xs font-bold text-green-400 number-ltr">
-                        +{g.total_winnings?.toLocaleString('ar-EG') || 0}
+                        +${(g.total_winnings || 0).toLocaleString('en-US')}
                       </span>
                     </td>
                     <td>
